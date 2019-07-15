@@ -1,5 +1,5 @@
-# BaseCodeLibrary
-日常开发中比较常见的一些代码库整理，用的时候看一眼就行：
+# BaseCodeLibrary  \n
+日常开发中比较常见的一些代码库整理，用的时候看一眼就行： \n
 1.Anrwatchdog：anr捕获工具
 2.PtcBaseEntity：实体类防止混淆
 3.Eventbug：事件总线
