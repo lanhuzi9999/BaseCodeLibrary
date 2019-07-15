@@ -55,6 +55,25 @@ public class BaseUtils {
     public static final String ASSET_BASE = "file:///android_asset/";
     public static final String FILE_BASE = "file://";
 
+    public static PackageInfo getPackageInfo(PackageManager pm, String packageName, int flags){
+        PackageInfo pkgInfo = null;
+        try {
+            pkgInfo = pm.getPackageInfo(packageName, flags);
+            //2017.7.21 Mic:360Q5读取到的versionCode=2147482647=0x7FFFFC17，占大部分，显然是故意的，针对这个问题进行处理
+            if ((pkgInfo.versionCode & 0x7FFF0000) == 0x7FFF0000){ //把它判为360Q5，用getPackageArchiveInfo
+                ApplicationInfo ai = pkgInfo.applicationInfo;
+                PackageInfo pkgsrc = pm.getPackageArchiveInfo(ai.publicSourceDir, PackageManager.GET_ACTIVITIES);
+                if (pkgsrc != null){
+                    pkgInfo.versionCode = pkgsrc.versionCode;
+                }
+            }
+
+        } catch (PackageManager.NameNotFoundException e) {
+            CustomLog.w("", "getPackageInfo fail, reason="+e);
+        }
+        return pkgInfo ;
+    }
+
     /**
      * 是否ui线程
      *

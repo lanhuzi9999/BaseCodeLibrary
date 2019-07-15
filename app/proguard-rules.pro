@@ -128,25 +128,6 @@
      native <methods>;
 }
 
-#统一认证混淆
--keep class com.cmcc.** {*;}
--keepclassmembers class com.cmcc.** {*;}
--dontwarn com.cmcc.**
--dontwarn cmcc.**
--keep interface com.cmcc.** { *; }
--keep class cmcc.** { *; }
--keep interface cmcc.** { *; }
-
-#MMClientSDK混淆
--dontwarn com.ccit.wlan.**
--keep class  com.ccit.wlan.** {*;}
--keepclassmembers class  com.ccit.wlan.** {*;}
--dontwarn com.ccit.**
--keep class com.ccit.** {*;}
--keep interface com.ccit.** {*;}
--dontwarn com.org.bouncycastle.**
--keep class com.org.bouncycastle.**{*;}
-
 #########有数SDK####################
 -keep public class com.chinaMobile.MobileAgent{
 	public static final <fields>;
