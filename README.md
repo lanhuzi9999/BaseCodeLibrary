@@ -1,17 +1,14 @@
-# CustomEventBus
-自定义生撸事件总线EventBus，使用起来比较方便，指定在UI线程处理总线事件或者在工作线程池时处理总线事件均可。下面是对几个类的简介：
-事件总线服务，专门用于处理多进程事件分发，为说明事件分发流程，定义角色为:主进程事件总线 MainUI--EventBus，服务事件总线 Service--EventBus，
-EventBusService 运行于主进程的服务
-(1)主进程发事件：
-Caller -->postEvent  ---->通过MainUI--EventBus 分发到当前进程的事件观察者 --> 触发事件观察者的 handleBusEvent调用
----->调用EventBusService的handleBusEvent -->通过注册进来的服务进程的Messenger发送到Service-EventBus
-(接续)的ClientHandler.handleMessage -->postEvent --> 通过Service-EventBus分发到服务进程的事件察者
--->(3)服务进程收到事件。
-(2)服务进程发事件：
-Caller -->postEvent  ---->通过Service-EventBus 分发到当前进程的事件观察者 --> 解发事件观察者的 handleBusEvent调用
----->通过ServiceMessenger发到EventBusService的MyHandler.handleMessage -->postEvent
--->(4)EventBusService收事件
-(3)服务进程收事件
-ClientHandler-->handleMessage -->通过Service-EventBus分发到当前进程的事件观察者（要防止再发回到主进程）
-(4)EventBusService收事件
-  EventBusService.MyHandler-->handleMessage -->通过MainUI--EventBus 分发到当前进程的事件观察者（要防止被再发回到服务进程）
+# BaseCodeLibrary
+日常开发中比较常见的一些代码库整理，用的时候看一眼就行：
+1.Anrwatchdog：anr捕获工具
+2.PtcBaseEntity：实体类防止混淆
+3.Eventbug：事件总线
+4.lifecycle：事件总线
+5.WaterMarkHelper:水印处理
+6.ReflectHelper:比较全的反射工具类
+7.StorageUtil:存储工具类
+8.比较常用的一些自定义view
+9.另外一些常见的工具类如加解密，io处理等等。
+
+
+
